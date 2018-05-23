@@ -82,4 +82,32 @@ git checkout dev
 你可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：
 git stash apply stash@{0}
 
+17、推送分支
+推送分支，就是把该分支上的所有本地提交推送到远程库。
+推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上
+git push origin 分支
+
+18多人协作
+因此，多人协作的工作模式通常是这样：
+
+首先，可以试图用git push origin <branch-name>推送自己的修改；
+如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
+如果合并有冲突，则解决冲突，并在本地提交；
+没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功！
+如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream-to <branch-name> origin/<branch-name>。
+这就是多人协作的工作模式，一旦熟悉了，就非常简单
+
+18、Tag：注意：标签总是和某个commit挂钩。
+命令git tag <tagname>用于新建一个标签，默认为HEAD，也可以指定一个commit id；
+命令git tag -a <tagname> -m "blablabla..."可以指定标签信息；用-a指定标签名，-m指定说明文字
+命令git tag可以查看所有标签。
+
+命令git push origin <tagname>可以推送一个本地标签；
+命令git push origin --tags可以推送全部未推送过的本地标签；
+命令git tag -d <tagname>可以删除一个本地标签；
+命令git push origin :refs/tags/<tagname>可以删除一个远程标签
+
+
+
+
 ```
