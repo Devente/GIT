@@ -35,10 +35,51 @@ git push -u origin master   ----------->推送到远程库
 推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，
 在以后的推送或者拉取时就可以简化命令git push origin master
 
+13、
+查看分支：git branch
+创建分支：git branch <name>
+切换分支：git checkout <name>
+创建+切换分支：git checkout -b <name>  ：  -b参数表示创建并切换
+合并某分支到当前分支：git merge <name>
+删除分支：git branch -d <name>
 
+14、快速合并：看不到分支的commit
+我们把dev分支的工作成果合并到master分支上:
+git checkout master
+git merge dev
+git merge命令用于合并指定分支到当前分支。合并后，再查看readme.txt的内容，
+就可以看到，和dev分支的最新提交是完全一样的
 
+普通合并：可以看到分支的commit
+git merge --no-ff -m "描述" dev
 
+15、合并冲突
+解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。
+用git log --graph命令可以看到分支合并图。
 
+16、修复bug
+工作现场：
+git status
+git stash   ---->把当前工作现场“储藏”起来，等以后恢复现场后继续工作
+用git status查看工作区，就是干净的（除非有没有被Git管理的文件），因此可以放心地创建分支来修复bug
 
+git checkout 在哪里修复
+git checkout -b issue-101  切换bug分支
+git add
+git commit -m "fix bug 101"
+修复完成后，切换到修复分支，并完成合并，最后删除issue-101分支：
+git checkout 在哪里修复
+git merge --no-ff -m "merged bug fix 101" issue-101
+git branch -d issue-101删除分支
+切回现场分支
+git checkout dev
+工作区是干净的，刚才的工作现场存到哪去了？用git stash list命令看看：
+工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：
+一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；
+另一种方式是用git stash pop，恢复的同时把stash内容也删了：
+
+再用git stash list查看，就看不到任何stash内容了：
+你可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：
+git stash apply stash@{0}
 
 ```
