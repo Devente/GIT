@@ -1,4 +1,21 @@
 ```
+查看远程分支
+git branch -a
+本地分支
+git branch
+创建并切换（-b）分支
+git checkout -b 分支
+把分支推到远程repository
+git push origin 分支
+删除本地分支
+git branch -d 分支
+删除远程分支
+git push origin :分支
+/
+git branch -r -d origin/分支
+
+
+
 1、pwd    --------> 显示当前目录
 2、git init   -------->这个目录变成Git可以管理的仓库
 3、git add 文件          ------->实际上就是把文件修改添加到暂存区（stage）
